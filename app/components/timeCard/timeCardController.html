@@ -1,0 +1,71 @@
+<!-- Top Block-->
+<div ng-include="'./app/components/shared/topbar.html'"></div>
+<!-- Top Block -->
+
+<div layout="row">
+    <md-toolbar>
+        <div class="md-toolbar-tools md-whiteframe-z1">
+            <h3>
+                <span>Time Card</span>
+            </h3>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="open()" ng-hide="isOpenRight()">
+                <md-icon aria-label="Menu" md-svg-icon="navigation:ic_menu_24px"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+</div>
+<div ng-cloak>
+  <md-content>
+
+    <md-list>
+      <md-list-item style="padding: 0px">
+          <label class="wd_12 center bold">Day</label>
+          <label class="wd_19 center bold">Start</label>
+          <label class="wd_19 center bold">Exit</label>
+          <label class="wd_19 center bold">Return</label>
+          <label class="wd_19 center bold">Finish</label>
+          <span class="wd_12">&nbsp;</span>
+          <md-divider></md-divider>
+      </md-list-item>
+
+      <md-list-item ng-repeat="item in listDays">
+          <label class="wd_12 center">{{item.day}}</label>
+          <label class="wd_19 center">{{item.startTime}}</label>
+          <label class="wd_19 center">{{item.startIntervalTime}}</label>
+          <label class="wd_19 center">{{item.finishIntervalTime}}</label>
+          <label class="wd_19 center">{{item.finishTime}}</label>
+          <span style="wd_12">
+              <md-button class="md-icon-button" ng-click="openCreate(item.date)">
+                <md-icon aria-label="Menu" md-svg-icon="content:ic_create_24px" style="color: #009688"></md-icon>
+            </md-button>
+          </span>
+        <md-divider></md-divider>
+      </md-list-item>
+    </md-list>
+
+  </md-content>
+</div>
+
+<div style="text-align: center">
+    <md-button class="md-icon-button" ng-click="plusTotal()">
+        <i class="material-icons">keyboard_arrow_down</i>
+    </md-button>
+</div>
+
+<div layout="row" flex ng-show="toolBar">
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="false">
+        <md-toolbar>
+            <h1 class="md-toolbar-tools">Emerson System</h1>
+        </md-toolbar>
+        <md-content layout-padding>
+            <md-list>
+                <md-list-item>
+                    <md-button md-ink-ripple ng-href="#login">
+                        <md-icon aria-label="Logout" md-svg-icon="action:ic_exit_to_app_24px"></md-icon>Logout
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+</div>

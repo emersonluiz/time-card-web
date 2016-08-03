@@ -1,0 +1,85 @@
+<!-- Top Block-->
+<div ng-include="'./app/components/shared/topbar.html'"></div>
+<!-- Top Block -->
+
+<div layout="row">
+    <md-toolbar>
+        <div class="md-toolbar-tools md-whiteframe-z1">
+            <md-button class="md-icon-button" ng-href="#timeCard">
+                <md-icon aria-label="Add" md-svg-icon="navigation:ic_arrow_back_24px"></md-icon>
+            </md-button>
+            <h3>
+                <span>Create Time Card</span>
+            </h3>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="open()" ng-hide="isOpenRight()">
+                <md-icon aria-label="Menu" md-svg-icon="navigation:ic_menu_24px"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+</div>
+
+<div>
+  <md-content flex layout-padding>
+    <form name="timeCardForm">
+
+    <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Start</label>
+            <input required type="text" name="startTime" ng-model="timecard.startTime" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}">
+            <div ng-messages="timeCardForm.startTime.$error">
+                <div ng-message="required">Start is required.</div>
+                <div ng-message="pattern">Start is invalid. (00:00)</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Exit</label>
+            <input type="text" name="startIntervalTime" ng-model="timecard.startIntervalTime" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}">
+            <div ng-messages="timeCardForm.startIntervalTime.$error">
+                <div ng-message="pattern">Exit is invalid. (00:00)</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Return</label>
+            <input type="text" name="finishIntervalTime" ng-model="timecard.finishIntervalTime" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}">
+            <div ng-messages="timeCardForm.finishIntervalTime.$error">
+                <div ng-message="pattern">Return is invalid. (00:00)</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Finish</label>
+            <input type="text" name="finishTime" ng-model="timecard.finishTime" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}">
+            <div ng-messages="timeCardForm.finishTime.$error">
+                <div ng-message="pattern">Finish is invalid. (00:00)</div>
+            </div>
+        </md-input-container>
+    </div>
+
+    <md-button class="md-raised md-primary" ng-click="save()" 
+        ng-disabled="timecard.startTime == undefined || timecard.startTime == '' || timeCardForm.startIntervalTime.$error.pattern  || timeCardForm.finishIntervalTime.$error.pattern || timeCardForm.finishTime.$error.pattern">Save
+    </md-button>
+    </form>
+  </md-content>
+</div>
+
+<div layout="row" flex ng-show="toolBar">
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="false">
+        <md-toolbar>
+            <h1 class="md-toolbar-tools">Emerson System</h1>
+        </md-toolbar>
+        <md-content layout-padding>
+            <md-list>
+                <md-list-item>
+                    <md-button md-ink-ripple ng-href="#timeCard">
+                        <md-icon aria-label="Timecard" md-svg-icon="navigation:ic_menu_24px"></md-icon>Time Card
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button md-ink-ripple ng-click="logout()">
+                        <md-icon aria-label="Logout" md-svg-icon="action:ic_exit_to_app_24px"></md-icon>Logout
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+</div>
